@@ -122,7 +122,7 @@ public class Assignment1 {
     }
 
     private static void insertMethod1(Connection connection, String inputFile) {
-        System.out.println("--- Insert method1 ---");
+        System.out.println("--- Insert method1 Postgres ---");
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
             String line;
             PreparedStatement insertAuthorStatement = connection.prepareStatement("INSERT INTO public.auth (name, pubid) VALUES(?, ?)");
@@ -150,7 +150,7 @@ public class Assignment1 {
     }
 
     private static void insertMethod2(Connection connection, String inputFile) {
-        System.out.println("--- Insert method2 ---");
+        System.out.println("--- Insert method2 Postgres ---");
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
             connection.setAutoCommit(false);
             String line;
@@ -183,7 +183,7 @@ public class Assignment1 {
     }
 
     private static void insertMethod3(Connection connection, String inputFile) {
-        System.out.println("--- Insert method3 ---");
+        System.out.println("--- Insert method3 Postgres ---");
         String sqlCopy = "COPY public.auth (name, pubid) FROM '" + "/tmp/" + inputFile + "' DELIMITER E'\t'";
         try {
             Statement copyStatement = connection.createStatement();
@@ -226,7 +226,7 @@ public class Assignment1 {
     }
 
     private static void insertMethod2MariaDb(Connection connection, String inputFile) {
-        System.out.println("--- Insert method2 ---");
+        System.out.println("--- Insert method2 MariaDB ---");
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
             connection.setAutoCommit(false);
             String line;
@@ -259,7 +259,7 @@ public class Assignment1 {
     }
 
     private static void insertMethod3MariaDb(Connection connection, String inputFile) {
-        System.out.println("--- Insert method3 ---");
+        System.out.println("--- Insert method3 MariaDB ---");
         String loadSql = "LOAD DATA INFILE '" + "/tmp/" + inputFile + "' INTO TABLE auth " +
                 "FIELDS TERMINATED BY '\t' " +
                 "LINES TERMINATED BY '\n'";
