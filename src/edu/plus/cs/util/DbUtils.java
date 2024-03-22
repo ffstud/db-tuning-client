@@ -32,6 +32,16 @@ public class DbUtils {
         }
     }
 
+    public static Optional<Connection> connectToMariaDb() {
+        String url = "jdbc:mariadb://localhost/db_tuning_1?user=root&password=admin";
+        try {
+            return Optional.of(DriverManager.getConnection(url));
+        } catch (SQLException e) {
+            System.err.println("Could not establish db connection: " + e.getMessage());
+            return Optional.empty();
+        }
+    }
+
     public static void printCount(Connection connection, String table) {
         try {
             Statement countStatement = connection.createStatement();

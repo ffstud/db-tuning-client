@@ -3,7 +3,6 @@ package edu.plus.cs.assignment;
 import edu.plus.cs.util.DbUtils;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
@@ -24,7 +23,7 @@ public class Assignment1 {
 
             // insert method1
             startTimestamp = System.currentTimeMillis();
-            // insertMethod1(connection, inputFile);
+            insertMethod1(connection, inputFile);
             endTimestamp = System.currentTimeMillis();
 
             DbUtils.printTimestamps(startTimestamp, endTimestamp);
@@ -48,10 +47,6 @@ public class Assignment1 {
             DbUtils.printTimestamps(startTimestamp, endTimestamp);
             DbUtils.printCount(connection, "public.auth");
             DbUtils.clearTable(connection, "public.auth");
-
-            // delete tables
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -124,7 +119,7 @@ public class Assignment1 {
 
     private static void insertMethod3(Connection connection, String inputFile) {
         System.out.println("--- Insert method3 ---");
-        String sqlCopy = "COPY public.auth(name, pubid) FROM '" + "/tmp/" + inputFile + "' DELIMITER E'\t' CSV HEADER";
+        String sqlCopy = "COPY public.auth (name, pubid) FROM '" + "/tmp/" + inputFile + "' DELIMITER E'\t'";
         try {
             Statement copyStatement = connection.createStatement();
 
