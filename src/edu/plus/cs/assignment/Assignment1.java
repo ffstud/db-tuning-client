@@ -17,11 +17,11 @@ public class Assignment1 {
         executeOnPostgres(inputFile);
 
         // MARIA DB
-        executeOnMariaDb(inputFile);
+        // executeOnMariaDb(inputFile);
     }
 
     private static void executeOnPostgres(String inputFile) {
-        Optional<Connection> optionalConnection = DbUtils.connectToPostgres();
+        Optional<Connection> optionalConnection = DbUtils.connectToPostgres("db-tuning-1");
 
         if (optionalConnection.isEmpty()) {
             System.err.println("Could not establish connection to postgres");
@@ -50,7 +50,7 @@ public class Assignment1 {
 
             // insert method2
             startTimestamp = System.currentTimeMillis();
-            insertMethod2(connection, inputFile);
+            // insertMethod2(connection, inputFile);
             endTimestamp = System.currentTimeMillis();
 
             DbUtils.printTimestamps(startTimestamp, endTimestamp);
@@ -65,13 +65,15 @@ public class Assignment1 {
             DbUtils.printTimestamps(startTimestamp, endTimestamp);
             DbUtils.printCount(connection, "public.auth");
             DbUtils.clearTable(connection, "public.auth");
+
+            connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private static void executeOnMariaDb(String inputFile) {
-        Optional<Connection> optionalConnection = DbUtils.connectToMariaDb();
+        Optional<Connection> optionalConnection = DbUtils.connectToMariaDb("db_tuning_1");
 
         if (optionalConnection.isEmpty()) {
             System.err.println("Could not establish connection to mariadb");
@@ -116,6 +118,8 @@ public class Assignment1 {
             DbUtils.printTimestamps(startTimestamp, endTimestamp);
             DbUtils.printCount(connection, "auth");
             DbUtils.clearTable(connection, "auth");
+
+            connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

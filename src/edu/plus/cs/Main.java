@@ -1,11 +1,8 @@
 package edu.plus.cs;
 
 import edu.plus.cs.assignment.Assignment1;
+import edu.plus.cs.assignment.Assignment2;
 import edu.plus.cs.util.AssignmentType;
-import edu.plus.cs.util.DbUtils;
-
-import java.sql.*;
-import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +10,7 @@ public class Main {
             System.err.println("Invalid call, no assignment given");
         }
 
-        AssignmentType assignmentType = null;
+        AssignmentType assignmentType;
         try {
             assignmentType = AssignmentType.valueOf(args[0].toUpperCase());
 
@@ -21,6 +18,12 @@ public class Main {
                 case A1 -> {
                     System.out.println("------- Assignment 1 -------");
                     Assignment1.executeAssignment1();
+                    break;
+                }
+                case A2 -> {
+                    System.out.println("------- Assignment 2 -------");
+                    Assignment2.executeAssignment2();
+                    break;
                 }
                 default -> {
                     System.err.println("Invalid assignment provided: " + args[0]);
