@@ -2,6 +2,7 @@ package edu.plus.cs;
 
 import edu.plus.cs.assignment.Assignment1;
 import edu.plus.cs.assignment.Assignment2;
+import edu.plus.cs.assignment.Assignment4;
 import edu.plus.cs.util.AssignmentType;
 
 public class Main {
@@ -25,6 +26,11 @@ public class Main {
                     Assignment2.executeAssignment2();
                     break;
                 }
+                case A4 -> {
+                    System.out.println("------- Assignment 4 -------");
+                    Assignment4.executeAssignment4();
+                    break;
+                }
                 default -> {
                     System.err.println("Invalid assignment provided: " + args[0]);
                     return;
@@ -32,6 +38,7 @@ public class Main {
             }
         } catch (Exception e) {
             System.err.println("Could not identify correct assignment type for: " + args[0]);
+            System.err.println(e.getMessage());
         }
     }
 }
