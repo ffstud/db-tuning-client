@@ -245,6 +245,20 @@ public class Assignment4 {
 
         stringBuilder.setLength(0);
 
+        // cluster with different attribute than the one used in the upcoming query
+        stringBuilder.append("CREATE INDEX idx_clustering_year ON public.publ (year)");
+
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("CLUSTER public.publ USING idx_clustering_year");
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
         // analyze table
         stringBuilder.append("ANALYZE public.publ");
         createIndexStatement = connection.createStatement();
@@ -265,6 +279,13 @@ public class Assignment4 {
         // create index on booktitle
         stringBuilder.append("CREATE INDEX idx_clustering_booktitle ON public.publ (booktitle)");
 
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        // cluster with different attribute than the one used in the upcoming query
+        stringBuilder.append("CLUSTER public.publ USING idx_clustering_year");
         createIndexStatement = connection.createStatement();
         createIndexStatement.execute(stringBuilder.toString());
 
@@ -295,6 +316,13 @@ public class Assignment4 {
 
         stringBuilder.setLength(0);
 
+        // cluster with different attribute than the one used in the upcoming query
+        stringBuilder.append("CLUSTER public.publ USING idx_clustering_year");
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
         // analyze table
         stringBuilder.append("ANALYZE public.publ");
         createIndexStatement = connection.createStatement();
@@ -306,6 +334,21 @@ public class Assignment4 {
         stringBuilder = new StringBuilder();
         stringBuilder.append("CREATE INDEX idx_clustering_name ON public.auth (name)");
 
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        // cluster with different attribute than the one used in the upcoming query
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("CREATE INDEX idx_clustering_auth_pubid ON public.auth (pubid)");
+
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("CLUSTER public.auth USING idx_clustering_auth_pubid");
         createIndexStatement = connection.createStatement();
         createIndexStatement.execute(stringBuilder.toString());
 
@@ -332,11 +375,38 @@ public class Assignment4 {
 
         stringBuilder.setLength(0);
 
+        stringBuilder.append("DROP INDEX idx_clustering_year");
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("DROP INDEX idx_clustering_auth_pubid");
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
         // ---------------- multipoint query, high selectivity
         // create index on year
         stringBuilder = new StringBuilder();
         stringBuilder.append("CREATE INDEX idx_clustering_year ON public.publ (year)");
 
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        // cluster with different attribute than the one used in the upcoming query
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("CREATE INDEX idx_clustering_pubid ON public.publ (pubid)");
+
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("CLUSTER public.publ USING idx_clustering_pubid");
         createIndexStatement = connection.createStatement();
         createIndexStatement.execute(stringBuilder.toString());
 
@@ -352,6 +422,12 @@ public class Assignment4 {
         int executedQueries4 = executeBenchmarkQuery4(connection, publications, authors, benchmarkLogger);
 
         stringBuilder.append("DROP INDEX idx_clustering_year");
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("DROP INDEX idx_clustering_pubid");
         createIndexStatement = connection.createStatement();
         createIndexStatement.execute(stringBuilder.toString());
 
@@ -373,6 +449,20 @@ public class Assignment4 {
 
         stringBuilder.setLength(0);
 
+        // cluster with different attribute than the one used in the upcoming query
+        stringBuilder.append("CREATE INDEX idx_clustering_year ON public.publ (year)");
+
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("CLUSTER public.publ USING idx_clustering_year");
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
         // analyze table
         stringBuilder.append("ANALYZE public.publ");
         createIndexStatement = connection.createStatement();
@@ -388,11 +478,31 @@ public class Assignment4 {
 
         stringBuilder.setLength(0);
 
+        stringBuilder.append("DROP INDEX idx_clustering_year");
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
         // ---------------- multipoint query, low selectivity
 
         // create index on booktitle
         stringBuilder.append("CREATE INDEX idx_clustering_booktitle ON public.publ USING HASH (booktitle)");
 
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        // cluster with different attribute than the one used in the upcoming query
+        stringBuilder.append("CREATE INDEX idx_clustering_year ON public.publ (year)");
+
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("CLUSTER public.publ USING idx_clustering_year");
         createIndexStatement = connection.createStatement();
         createIndexStatement.execute(stringBuilder.toString());
 
@@ -413,11 +523,31 @@ public class Assignment4 {
 
         stringBuilder.setLength(0);
 
+        stringBuilder.append("DROP INDEX idx_clustering_year");
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
         // ---------------- multipoint query, in predicate, low selectivity
         // create index on pubid
         stringBuilder = new StringBuilder();
         stringBuilder.append("CREATE INDEX idx_clustering_pubid ON public.publ USING HASH (pubid)");
 
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        // cluster with different attribute than the one used in the upcoming query
+        stringBuilder.append("CREATE INDEX idx_clustering_year ON public.publ (year)");
+
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("CLUSTER public.publ USING idx_clustering_year");
         createIndexStatement = connection.createStatement();
         createIndexStatement.execute(stringBuilder.toString());
 
@@ -434,6 +564,20 @@ public class Assignment4 {
         stringBuilder = new StringBuilder();
         stringBuilder.append("CREATE INDEX idx_clustering_name ON public.auth USING HASH (name)");
 
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        // cluster with different attribute than the one used in the upcoming query
+        stringBuilder.append("CREATE INDEX idx_clustering_auth_pubid ON public.auth (pubid)");
+
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("CLUSTER public.auth USING idx_clustering_auth_pubid");
         createIndexStatement = connection.createStatement();
         createIndexStatement.execute(stringBuilder.toString());
 
@@ -460,11 +604,37 @@ public class Assignment4 {
 
         stringBuilder.setLength(0);
 
+        stringBuilder.append("DROP INDEX idx_clustering_year");
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("DROP INDEX idx_clustering_auth_pubid");
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
         // ---------------- multipoint query, high selectivity
         // create index on year
         stringBuilder = new StringBuilder();
         stringBuilder.append("CREATE INDEX idx_clustering_year ON public.publ USING HASH (year)");
 
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        // cluster with different attribute than the one used in the upcoming query
+        stringBuilder.append("CREATE INDEX idx_clustering_pubid ON public.publ (pubid)");
+
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("CLUSTER public.publ USING idx_clustering_pubid");
         createIndexStatement = connection.createStatement();
         createIndexStatement.execute(stringBuilder.toString());
 
@@ -480,6 +650,12 @@ public class Assignment4 {
         int executedQueries4 = executeBenchmarkQuery4(connection, publications, authors, benchmarkLogger);
 
         stringBuilder.append("DROP INDEX idx_clustering_year");
+        createIndexStatement = connection.createStatement();
+        createIndexStatement.execute(stringBuilder.toString());
+
+        stringBuilder.setLength(0);
+
+        stringBuilder.append("DROP INDEX idx_clustering_pubid");
         createIndexStatement = connection.createStatement();
         createIndexStatement.execute(stringBuilder.toString());
 

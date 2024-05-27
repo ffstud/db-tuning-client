@@ -1,4 +1,0 @@
-Clustering B+ Tree Index: 1985347, 146054, 82317, 2463
-Non-Clustering B+ Tree Index: 1973107, 147930, 80356, 2482
-Non-Clustering Hash Index: 2369970, 136126, 172501, 2214
-Table Scan: 2080, 1771, 342, 1069
