@@ -3,6 +3,7 @@ package edu.plus.cs;
 import edu.plus.cs.assignment.Assignment1;
 import edu.plus.cs.assignment.Assignment2;
 import edu.plus.cs.assignment.Assignment4;
+import edu.plus.cs.assignment.Assignment6;
 import edu.plus.cs.util.AssignmentType;
 
 public class Main {
@@ -29,6 +30,18 @@ public class Main {
                 case A4 -> {
                     System.out.println("------- Assignment 4 -------");
                     Assignment4.executeAssignment4();
+                    break;
+                }
+                case A6 -> {
+                    if (args.length < 3) {
+                        System.err.println("Invalid call, please use A6 <transactionType: A | B> <isolationLevel: COMMITTED | SERIALIZABLE> ");
+                    }
+
+                    String transactionType = args[1];
+                    String isolationLevel = args[2];
+
+                    System.out.println("------- Assignment 6 -------");
+                    Assignment6.executeAssignment6(transactionType, isolationLevel);
                     break;
                 }
                 default -> {
